@@ -1,5 +1,6 @@
 # Python外部ライブラリをインポート
 import json
+
 import boto3
 
 # Bedrockクライアントを作成
@@ -20,14 +21,17 @@ body = json.dumps(
 )
 
 # モデルを定義（Claude 3 Sonnet）
-modelId = "anthropic.claude-3-sonnet-20240229-v1:0"
+# modelId = "anthropic.claude-3-sonnet-20240229-v1:0"
+modelId = "anthropic.claude-3-haiku-20240307-v1:0"
 
 # HTTPヘッダーを定義
 accept = "application/json"
 contentType = "application/json"
 
 # レスポンスを定義
-response = bedrock.invoke_model(body=body, modelId=modelId, accept=accept, contentType=contentType)
+response = bedrock.invoke_model(
+    body=body, modelId=modelId, accept=accept, contentType=contentType
+)
 response_body = json.loads(response.get("body").read())
 answer = response_body["content"][0]["text"]
 
