@@ -1,4 +1,5 @@
 # Python外部ライブラリをインポート
+import os
 import boto3
 import streamlit as st
 
@@ -19,7 +20,8 @@ if button:
         retrieveAndGenerateConfiguration={
             "type": "KNOWLEDGE_BASE",
             "knowledgeBaseConfiguration": {
-                "knowledgeBaseId": "XXXXXXXXXX",  # ナレッジベースID
+                # "knowledgeBaseId": "XXXXXXXXXX",  # ナレッジベースID
+                "knowledgeBaseId": os.getenv("KNOWLEDGE_BASE_ID"),  # ナレッジベースID
                 "modelArn": "arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-3-sonnet-20240229-v1:0",
             },
         },

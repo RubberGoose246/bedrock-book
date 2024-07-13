@@ -1,4 +1,5 @@
 # 外部ライブラリをインポート
+import os
 import streamlit as st
 from langchain_aws import ChatBedrock
 from langchain_aws.retrievers import AmazonKnowledgeBasesRetriever
@@ -8,7 +9,8 @@ from langchain_core.runnables import RunnablePassthrough
 
 # 検索手段を指定
 retriever = AmazonKnowledgeBasesRetriever(
-    knowledge_base_id="XXXXXXXXXX",  # ここにナレッジベースIDを記載する
+    # knowledge_base_id="XXXXXXXXXX",  # ここにナレッジベースIDを記載する
+    knowledge_base_id=os.getenv("KNOWLEDGE_BASE_ID"),  # ここにナレッジベースIDを記載する
     retrieval_config={"vectorSearchConfiguration": {"numberOfResults": 10}},
 )
 
