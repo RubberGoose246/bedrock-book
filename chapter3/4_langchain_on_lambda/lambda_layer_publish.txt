@@ -1,0 +1,9 @@
+mkdir python
+
+pip install -t python langchain==0.2.0 langchain-aws==0.1.4 langchain-community==0.2.0 python-dateutil==2.8.2
+
+rm -r python/boto*
+
+zip -r9 langchain-layer.zip python
+
+aws lambda publish-layer-version --layer-name langchain-layer --compatible-runtimes python3.9 --compatible-architectures x86_64 --zip-file fileb://langchain-layer.zip --no-cli-pager
