@@ -1,11 +1,15 @@
+import os
 import uuid
 
 import boto3
 import streamlit as st
 
 # Agentの定義
-agent_id: str = "XXXXXXX"  # エージェントのIDを入力
-agent_alias_id: str = "XXXXXXX"  # エイリアスのIDを入力
+# agent_id: str = "XXXXXXX"  # エージェントのIDを入力
+agent_id: str = os.getenv("AGENT_ID")  # エージェントのIDを入力
+# agent_alias_id: str = "XXXXXXX"  # エイリアスのIDを入力
+agent_alias_id: str = os.getenv("AGENT_ALIAS")  # エイリアスのIDを入力
+
 session_id: str = str(uuid.uuid1())
 client = boto3.client("bedrock-agent-runtime")
 
