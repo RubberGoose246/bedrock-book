@@ -9,8 +9,8 @@ st.title("つくよみちゃんチャット")
 
 # ChatOpenAIを生成
 chat = ChatOpenAI(
-    openai_api_key=os.getenv("OPENAI_API_KEY"),
-    model_name=os.getenv("MODEL_TSUKUYOMICHAN"),
+    openai_api_key=st.secrets["OPENAI_API_KEY"],
+    model_name=st.secrets["MODEL_TSUKUYOMICHAN"],
     streaming=True,
 )
 
